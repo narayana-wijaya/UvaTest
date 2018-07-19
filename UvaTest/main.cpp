@@ -85,7 +85,17 @@ int main()
             }
             
         /*
-            start search, if
+        start search,
+         if x == y and x < centerX then +y
+         if x == y and x > centerX then 1x +x
+         3.3 -> 4.3
+         4.3 -> 4.2
+         
+         4.2 -> 2.2
+         2.2 -> 2.4
+         2.4 -> 5.4 x+
+         5.4 -> 5.1 y-
+         5.1 -> 1.1 x-
         */
             
 //            if (rootValue % 2 == 0) {
