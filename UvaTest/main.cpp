@@ -46,49 +46,68 @@ int main()
             cout << rootValue << endl;
             
             int xToCenter = rootValue/2;
-            int startPointValue = pow(rootValue, 2);
+            int currentValue = pow(rootValue, 2);
         //get coordinate of closer value
-            int stepToValue = value - startPointValue;
-            int startPointX;
-            int startPointY;
+            int stepToValue = value - currentValue;
+            int currentX;
+            int currentY;
             
             if (rootValue % 2 == 0) {
-                startPointX = centerX - xToCenter;
-                startPointY = startPointX + 1;
+                currentX = centerX - xToCenter;
+                currentY = currentX + 1;
             } else {
-                startPointX = centerX + xToCenter;
-                startPointY = startPointX;
+                currentX = centerX + xToCenter;
+                currentY = currentX;
             }
             
-            cout << "Start point at x: " << startPointX << ", and y: " << startPointY << endl;
+            cout << "Start point at x: " << currentX << ", and y: " << currentY << endl;
             int distanceToValue = value - pow(rootValue, 2);
-        //get direction
+            int turningPointX;
             
+        //get direction
+            if (currentValue % 2 == 0 && stepToValue < 0) { //+x and +y
+                turningPointX = 2*centerX - currentX;
+            }
+            if (currentValue % 2 == 0 && stepToValue > 0) { //-x turn +y
+                turningPointX = currentY;
+            }
+            if (currentValue % 2 != 0 && stepToValue < 0) { //-x turn -y
+                turningPointX = 2*centerY - currentY;
+                
+            }
+            if (currentValue % 2 != 0 && stepToValue > 0) { //x+1 turn -y
+                currentValue = currentValue + 1;
+                currentX = currentX+1;
+                while (currentValue != value) {
+                    currentValue += 1;
+                    currentY -= 1;
+                }
+            }
             
         /*
             start search, if
         */
             
-            if (rootValue % 2 == 0) {
-                if (rootValue*rootValue > value) {
-                    rootValue = rootValue + 1;
-                } else {
-                    rootValue = rootValue - 1;
-                }
-            }
-            
-            int belowRootValue = 2*xToCenter + 1;
-            int upperRootValue = 2*(xToCenter+1) + 1;
-            
-            int belowValue = belowRootValue * belowRootValue;
-            int upperValue = upperRootValue * upperRootValue;
+//            if (rootValue % 2 == 0) {
+//                if (rootValue*rootValue > value) {
+//                    rootValue = rootValue + 1;
+//                } else {
+//                    rootValue = rootValue - 1;
+//                }
+//            }
+//
+//            int belowRootValue = 2*xToCenter + 1;
+//            int upperRootValue = 2*(xToCenter+1) + 1;
+//
+//            int belowValue = belowRootValue * belowRootValue;
+//            int upperValue = upperRootValue * upperRootValue;
             
             // find the shortest another pow value to value
             
-            int distanceBelowValue = value - belowValue;
-            int distanceAboveValue = upperValue - value;
-            
-            int distance = min(distanceAboveValue, distanceAboveValue);
+//            int distanceBelowValue = value - belowValue;
+//            int distanceAboveValue = upperValue - value;
+//            
+//            int distance = min(distanceAboveValue, distanceAboveValue);
 //            int startPointY = centerY + pointToCenter;
 //            int startPointX = centerX + pointToCenter;
             
